@@ -6,6 +6,7 @@ import AddContactForm from "./ContactForm/ContactForm";
 import Filter from "./Filter/Filter";
 import { ContactList } from "./ContactList/ContactList";
 import { nanoid } from "nanoid";
+// import Notiflix from "notiflix";
 
 export class App extends Component {
   state = {
@@ -15,7 +16,9 @@ export class App extends Component {
       number: '+380 98 380 4 380'
     },
   ],
-    filter: ''
+    filter: '',
+    // isDelete: false,
+    // isCreate: false,
   }
 
   componentDidMount() {
@@ -26,10 +29,16 @@ export class App extends Component {
   }
 
   componentDidUpdate(_, prevState) {
-    console.log('prevState :>> ', prevState);
-    console.log('this.state :>> ', this.state);
+    // console.log('prevState :>> ', prevState);
+    // console.log('this.state :>> ', this.state);
     if (prevState.contacts.length !== this.state.contacts.length) {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+    if (prevState.contacts.length > this.state.contacts.length) {
+     console.log('delited :>> ', "delited");
+    }
+     if (prevState.contacts.length < this.state.contacts.length) {
+            // Notiflix.Report.success('New contact has created!', 'Add to the contact list?', 'OK');
     }
   }
 
